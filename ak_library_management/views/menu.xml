@@ -1,0 +1,9 @@
+<odoo>
+    <data>
+        <menuitem id="library_management_menu" name="Library Management"/>
+
+        <menuitem id="library_books_menu" name="Books" parent="library_management_menu" action="action_library_book"/>
+        <menuitem id="library_books_category_menu" name="Book category" parent="library_management_menu" action="action_library_book_category"/>
+        <menuitem id="library_members_menu" name="Members" parent="library_management_menu" action="action_library_member"/>
+    </data>
+</odoo>
