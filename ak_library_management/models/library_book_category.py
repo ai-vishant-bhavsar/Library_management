@@ -17,5 +17,5 @@ class LibraryBookCategory(models.Model):
     ]
 
     name = fields.Selection(selection=CATEGORY_SELECTION, string="Category", required=True)
-    custom_name = fields.Char(string="Custom Category", unique=True)
+    custom_name = fields.Char(string="Custom Category")
     tag_ids = fields.Many2many('library.book.tags', string="Tags")
