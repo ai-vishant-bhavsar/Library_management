@@ -1,0 +1,54 @@
+<odoo>
+    <data>
+        <!-- List view library book -->
+        <record id="view_library_book_tree" model="ir.ui.view">
+            <field name="name">library.book.tree</field>
+            <field name="model">library.book</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="name"/>
+                    <field name="author"/>
+                    <field name="isbn"/>
+                    <field name="state"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Form view library book-->
+        <record id="view_library_book_form" model="ir.ui.view">
+            <field name="name">library.book.form</field>
+            <field name="model">library.book</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <field name="state" widget="statusbar" options="{'clickable': '1'}"/>
+                    </header>>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="author"/>
+                                <field name="isbn"/>
+                            </group>
+                            <group>
+                                <field name="publication_date"/>
+                                <field name="category_id"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="description"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Library book action -->
+        <record id="action_library_book" model="ir.actions.act_window">
+            <field name="name">Books</field>
+            <field name="res_model">library.book</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+    </data>
+</odoo>
