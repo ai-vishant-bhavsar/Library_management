@@ -5,7 +5,7 @@
     'category': 'Library',
     'author': 'Vishant Bhavsar',
     'website': 'http://aktivesoftware.com',
-    'license': 'LGPL-3'
+    'license': 'LGPL-3',
     'depends': ['base', 'web'],
     'data': [
         'security/ir.model.access.csv',
