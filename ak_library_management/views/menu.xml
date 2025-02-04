@@ -1,8 +1,0 @@
-<odoo>
-    <menuitem id="library_management_menu" name="Library Management"/>
-
-    <menuitem id="library_books_menu" name="Books" parent="library_management_menu" action="action_library_book"/>
-    <menuitem id="library_book_category_menu" name="Book Categories" parent="library_management_menu" action="action_library_book_category"/>
-    <menuitem id="library_members_menu" name="Members" parent="library_management_menu" action="action_library_member"/>
-    <menuitem id="book_tags_menu" name="Book Tags" parent="library_management_menu" action="action_library_book_tags"/>
-</odoo>
