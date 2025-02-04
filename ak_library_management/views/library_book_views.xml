@@ -21,6 +21,9 @@
             <field name="model">library.book</field>
             <field name="arch" type="xml">
                 <form>
+                    <header>
+                        <field name="state" widget="statusbar" optins="{'clickable':'1'}"/>
+                    </header>
                     <sheet>
                         <group>
                             <group>
@@ -32,7 +35,6 @@
                             <group>
                                 <field name="category_id"/>
                                 <field name="tags_ids" widget="many2many_tags" readonly="False"/>
-                                <field name="state"/>
                                 <field name="description"/>
                             </group>
                         </group>
