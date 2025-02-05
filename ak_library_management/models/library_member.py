@@ -2,8 +2,7 @@
 from odoo import models, fields
 
 class LibraryMember(models.Model):
-    """This is normal model, it is store
-       members details in the database"""
+    """This model is store members details in the database"""
     _name = 'library.member'
     _description = 'Library Member'
 
