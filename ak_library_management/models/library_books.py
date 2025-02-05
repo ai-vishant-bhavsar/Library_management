@@ -3,8 +3,7 @@
 from odoo import models, fields
 
 class LibraryBook(models.Model):
-    """This is a normal model and this model is
-       store book data in the database"""
+    """This model is store book data in the database"""
     _name = 'library.book'
     _description = 'Library Book'
 
