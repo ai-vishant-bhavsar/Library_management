@@ -22,7 +22,7 @@
                 <form>
                     <header>
                         <field name="state" widget="statusbar" options="{'clickable': '1'}"/>
-                    </header>>
+                    </header>
                     <sheet>
                         <group>
                             <group>
