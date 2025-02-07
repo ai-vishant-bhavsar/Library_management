@@ -2,8 +2,7 @@
 from odoo import models, fields
 
 class Library(models.Model):
-    """ This normal model it is store
-        library details into the database """
+    """ This store library details into the database """
     _name = 'library.library'
     _description = 'Library'
 
@@ -11,4 +10,4 @@ class Library(models.Model):
     location = fields.Char(string="Location")
     capacity = fields.Integer(string="Capacity")
     notes = fields.Text(string="Notes")
-    book_ids = fields.One2many(comodel_name='library.book', inverse_name='library_id', string="Books")
+    product_id = fields.Many2many(comodel_name='product.template', string="Books")

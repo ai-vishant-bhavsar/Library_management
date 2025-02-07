@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
         <!-- List view library -->
@@ -27,12 +28,11 @@
                         </group>
                         <notebook>
                             <page string="Books">
-                                <field name="book_ids">
+                                <field name="product_id" domain="[('is_library_book','=','True')]">
                                     <list>
                                         <field name="name"/>
                                         <field name="author"/>
-                                        <field name="isbn"/>
-                                        <field name="category_id"/>
+                                        <field name="barcode"/>
                                     </list>
                                 </field>
                             </page>

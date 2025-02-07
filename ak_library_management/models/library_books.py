@@ -2,8 +2,7 @@
 from odoo import models, fields
 
 class LibraryBook(models.Model):
-    """ This normal model it is store
-        library books details into the database"""
+    """ This is store library books details into the database """
     _name = 'library.book'
     _description = 'Library Book'
 

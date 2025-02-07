@@ -2,12 +2,11 @@
 from odoo import models, fields
 
 class LibraryMember(models.Model):
-    """ This is normal model, it is store
-        library member details into database """
+    """ This store library member details into database """
     _name = 'library.member'
     _description = 'Library Member'
 
-    name = fields.Char(string='Member Name', required=True)
-    email = fields.Char(string='Email ID')
-    phone = fields.Char(string='Contact Number')
-    membership_date = fields.Date(string='Membership Start Date')
+    name = fields.Char('Member Name', required=True)
+    email = fields.Char('Email ID')
+    phone = fields.Char('Contact Number')
+    membership_date = fields.Date('Membership Start Date')

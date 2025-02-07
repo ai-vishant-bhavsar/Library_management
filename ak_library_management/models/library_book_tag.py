@@ -2,8 +2,7 @@
 from odoo import models, fields
 
 class LibraryBookTags(models.Model):
-    """ This is normal model, it is store
-        book tags into the database """
+    """ This is store book tags into the database """
     _name = 'library.book.tags'
     _description = 'Book Tags'
 

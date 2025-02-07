@@ -4,3 +4,4 @@ from . import library_member
 from . import library_book_category
 from . import library_book_tag
 from . import library_library
+from . import product_template
