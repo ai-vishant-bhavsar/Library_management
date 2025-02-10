@@ -47,6 +47,7 @@
                 </xpath>
             </field>
         </record>
+        <!-- This action is to show only Library books from the product-->
         <record id="stock.product_template_action_product" model="ir.actions.act_window">
             <field name="domain">[('is_library_book', '=', 'True')]</field>
         </record>
