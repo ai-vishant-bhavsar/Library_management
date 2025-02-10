@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Main manu: Library -->
+        <menuitem id="menu_library_main" name="Library" sequence="1"/>
+        <!-- Sub menu: Libraries -->
+        <menuitem id="menu_library_list" name="Libraries" parent="menu_library_main" sequence="10" action="action_library_library"/>
+        <!-- Main manu: Library Management -->
+        <menuitem id="menu_library_management" name="Library Management" sequence="20" parent="menu_library_main"/>
+        <!-- Sub menu: Books -->
+        <menuitem id="menu_library_books" name="Books" parent="menu_library_management" sequence="0" action="stock.product_template_action_product"/>
+        <!-- Main menu: Members -->
+        <menuitem id="menu_library_members" name="Members" sequence="30" parent="menu_library_main"/>
+        <!-- Sub menu: Members -->
+        <menuitem id="sub_menu_library_members" name="Members" parent="menu_library_members" sequence="0" action="action_library_member"/>
+    </data>
+</odoo>
