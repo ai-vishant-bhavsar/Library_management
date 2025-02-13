@@ -8,7 +8,13 @@
     'website': 'http://aktivesoftware.com',
     'license':'LGPL-3',
     'description': 'The Library management system',
-    'depends': ['base', 'web', 'product', 'sale'],
+    'depends': [
+        'base', 
+        'web', 
+        'product', 
+        'stock',
+        'sale'
+    ],
     'data': [
         'security/ir.model.access.csv',
         'views/action.xml',
