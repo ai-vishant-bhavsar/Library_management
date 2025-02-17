@@ -13,7 +13,8 @@
         'web', 
         'product', 
         'stock',
-        'sale'
+        'sale',
+        'sale_management'
     ],
     'data': [
         'security/ir.model.access.csv',
