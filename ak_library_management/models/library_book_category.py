@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields
 
+
 class LibraryBookCategory(models.Model):
-    """ This model is store the categories for the books """
+    """ This is store book categories into database """
     _name = 'library.book.category'
     _description = 'Book Category'
 
-    name = fields.Char(string="Category Name", required=True)
-    description = fields.Text(string="Description")
+    name = fields.Char(string="Category")
+    tag_ids = fields.Many2many(
+        comodel_name='library.book.tags',
+        string="Tags")
