@@ -37,7 +37,7 @@
                         <notebook>
                             <page string="Books">
                                 <field name="book_ids" domain="[('is_library_book','=','True')]" options="{'create': false}">
-                                    <list editable="false" >
+                                    <list editable="top" >
                                         <field name="default_code" string="Reference ID" readonly="true"/>
                                         <field name="name" readonly="true"/>
                                         <field name="author" readonly="true"/>
