@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields,api
 
+
 class Library(models.Model):
     """ This store library details into the database """
     _name = 'library.library'

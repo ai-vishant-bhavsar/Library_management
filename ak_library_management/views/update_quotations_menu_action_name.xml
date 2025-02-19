@@ -1,5 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+        <!-- This is the inherited action to change the name -->
         <record id="sale.action_quotations_with_onboarding" model="ir.actions.act_window">
             <field name="name">Draft Quotations</field>
             <field name="path">sales</field>

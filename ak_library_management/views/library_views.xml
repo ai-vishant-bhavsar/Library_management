@@ -36,8 +36,9 @@
                         </group>
                         <notebook>
                             <page string="Books">
-                                <field name="book_ids" domain="[('is_library_book','=','True')]">
+                                <field name="book_ids" domain="[('is_library_book','=','True')]" options="{'create': false}">
                                     <list>
+                                        <field name="default_code" string="Reference ID"/>
                                         <field name="name"/>
                                         <field name="author"/>
                                         <field name="state"/>

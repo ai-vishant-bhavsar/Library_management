@@ -6,7 +6,8 @@
             <field name="name">library.member.tree</field>
             <field name="model">library.member</field>
             <field name="arch" type="xml">
-                <list>
+                <list name="Members List">
+                    <field name="membership_no"/>
                     <field name="name"/>
                     <field name="email"/>
                     <field name="phone"/>
@@ -18,10 +19,11 @@
             <field name="name">library.member.form</field>
             <field name="model">library.member</field>
             <field name="arch" type="xml">
-                <form>
+                <form name="Member details form">
                     <sheet>
                         <group>
                             <group>
+                                <field name="membership_no" string="Membership ID"/>
                                 <field name="name"/>
                                 <field name="email"/>
                             </group>

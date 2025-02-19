@@ -23,24 +23,21 @@
                 </xpath>
                 <xpath expr="//page[@name='general_information']" position="after">
                     <page string="Book details">
-                        <form>
-                            <sheet>
-                                <group>
-                                    <group>
-                                        <field name="is_library_book" required="sale_ok"/>
-                                        <field name="author" required="sale_ok"/>
-                                        <field name="publisher" required="sale_ok"/>
-                                        <field name="edition" required="sale_ok"/>
-                                    </group>
-                                    <group>
-                                        <field name="barcode" postion="move" string="ISBN Number" required="sale_ok"/>
-                                        <field name="published_data" required="sale_ok"/>
-                                        <field name="pages" required="sale_ok"/>
-                                        <field name="available" required="sale_ok"/>
-                                    </group>
-                                </group>
-                            </sheet>
-                        </form>
+                        <group>
+                            <group>
+                                <field name="bulk_upload_book" readonly="1"/>
+                                <field name="is_library_book" required="sale_ok"/>
+                                <field name="author" required="sale_ok"/>
+                                <field name="publisher" required="sale_ok"/>
+                                <field name="edition" required="sale_ok"/>
+                            </group>
+                            <group>
+                                <field name="barcode" postion="move" string="ISBN Number" required="sale_ok"/>
+                                <field name="published_data" required="sale_ok"/>
+                                <field name="pages" required="sale_ok"/>
+                                <field name="available" readonly="1"/>
+                            </group>
+                        </group>
                     </page>
                 </xpath>
             </field>

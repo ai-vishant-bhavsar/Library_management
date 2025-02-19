@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields
 
+
 class LibraryBookCategory(models.Model):
     """ This is store book categories into database """
     _name = 'library.book.category'
