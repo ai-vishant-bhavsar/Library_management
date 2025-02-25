@@ -9,7 +9,7 @@
             <field name="arch" type="xml">
                 <!-- This is the changed condition of existing button-->
                 <xpath expr="//button[@name='action_confirm'][2]" position="attributes">
-                    <attribute name="invisible">not approved_by_manager</attribute>
+                    <attribute name="invisible">approval_needed and not approved_by_manager</attribute>
                 </xpath>
                 <!--In this I have added 2 new button named Approve and Reject-->
                 <xpath expr="//button[@name='action_draft']" position="after">
