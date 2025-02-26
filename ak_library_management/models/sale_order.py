@@ -10,7 +10,6 @@ class SaleOrder(models.Model):
 
     approval_needed = fields.Boolean(string='Approval Needed', compute='_compute_approval_needed', store=True)
     approved_by_manager = fields.Boolean(string='Approved by Manager', default=False)
-    product_count = fields.Integer(string='Product count', compute='_computer_product_count', store=True)
 
     @api.depends('order_line.product_uom_qty')
     def _compute_approval_needed(self):
@@ -19,7 +18,6 @@ class SaleOrder(models.Model):
         for order in self:
             low_stock_books = self.order_line.filtered(lambda l: l.product_uom_qty < 5)
             order.approval_needed = bool(low_stock_books)
-            order.product_count = len(low_stock_books)
 
     def action_confirm(self):
         """ This method is override and add a validation for the
