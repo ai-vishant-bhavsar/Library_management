@@ -60,11 +60,6 @@
                   parent="menu_library_configuration"
                   sequence="20"
                   action="action_library_book_category"/>
-        <menuitem id="menu_borrow_transaction_history"
-                  name="Borrow_book_transaction"
-                  parent="menu_library_management_main"
-                  sequence="50"
-                  action="action_borrow_transaction_history"/>
         <!-- updated sale menu product variant to Product items and change the sequence -->
         <menuitem id="sale.menu_products"
                   name="Product items"
