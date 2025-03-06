@@ -9,6 +9,7 @@
     'license':'LGPL-3',
     'description': 'The Library management system',
     'depends': [
+        'base',
         'stock',
         'sale_management'
     ],
@@ -24,6 +25,7 @@
         'views/update_quotations_menu_action_name.xml',
         'views/library_bulk_upload_books_view.xml',
         'views/res_users_view.xml',
+        'views/res_partner_view.xml',
         'views/menu.xml',
     ],
 

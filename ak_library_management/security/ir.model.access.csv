@@ -6,5 +6,6 @@ access_library_book_category,Library Book Category,model_library_book_category,1
 access_library_book_tags,Library Book Tags,model_library_book_tags,1,1,1,1
 access_library_bulk_upload_books,access.library.bulk.upload.books,model_library_bulk_upload_books,1,1,1,1
 
-access_res_users.manager,res.users.manager,model_res_users,1,0,0,0
+access_res_users,res.users,model_res_users,1,0,0,0
 access_sale_order,sale.order,model_sale_order,1,1,1,1
+access_res_partner,res.partner,model_res_partner,1,1,1,1

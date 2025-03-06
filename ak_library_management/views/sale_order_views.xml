@@ -9,23 +9,22 @@
             <field name="arch" type="xml">
                 <!-- This is the changed condition of existing button-->
                 <xpath expr="//button[@name='action_confirm'][2]" position="attributes">
-                    <attribute name="invisible">approval_needed and not approved_by_manager</attribute>
+                    <attribute name="invisible">approval_needed and not approved_by_manager or (state != 'draft')</attribute>
                 </xpath>
                 <!--In this I have added 2 new button named Approve and Reject-->
                 <xpath expr="//button[@name='action_draft']" position="after">
                     <button name="action_approve"
                             string="Approve"
                             type="object"
-                            invisible="not approval_needed"
-                            groups="base.group_system"/>
+                            invisible="not approval_needed or (state != 'draft')"/>
                     <button name="action_cancel"
                             string="Reject"
                             type="object"
-                            invisible="not approval_needed"/>
+                            invisible="not approval_needed or (state != 'draft')"/>
                 </xpath>
                 <!-- In this I have add domain to show only book products -->
                 <xpath expr="//field[@name='product_template_id']" position="attributes">
-                    <attribute name="domain">[('sale_ok', '=', True),('is_library_book', '=', True)]</attribute>
+                    <attribute name="domain">[('sale_ok', '=', True),('is_library_book','=',True)]</attribute>
                 </xpath>
             </field>
         </record>

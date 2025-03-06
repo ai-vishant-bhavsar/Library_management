@@ -28,7 +28,7 @@ class LibraryBulkUploadBooks(models.TransientModel):
             raise ValidationError("Invalid Book Names")
         for book_name in self.book_names.split(','):
             book_name = book_name.strip()
-            if not bool(self.env['product.template'].search([('name', '=', book_name)])):
+            if not self.env['product.template'].search([('name', '=', book_name),('is_library_book','=',True)]):
                 product = self.env['product.template'].create([{
                     'name': book_name,
                     'author': self.author_id.name,
@@ -38,21 +38,22 @@ class LibraryBulkUploadBooks(models.TransientModel):
                 }])
 
     def revert_changes(self):
-        """ This function is to unlink the book which are created in this model
-         but not all book it unlink only the running sessions books """
+        """ This function is to unlink the book which are created in this
+        model but not all book it unlink only the running sessions books """
         for book_name in self.book_names.split(','):
             book_name = book_name.strip()
-            self.env['product.template'].search([('name', '=', book_name)]).unlink()
+            self.env['product.template'].search([('name', '=', book_name), ('bulk_upload_book','=',True)]).unlink()
+
 
     @api.depends("book_names")
     def _compute_bulk_books_count(self):
         """ This function is to count the created book in running session """
-        if self.book_names:
-            book_names_list = [book_name.strip() for book_name in self.book_names.split(",")]
-            self.bulk_books_count = (self.env['product.template'].
-                                     search_count([("name", "in", book_names_list)]))
-        else:
-            self.bulk_books_count = 0
+        for record in self:
+            record.bulk_books_count = 0
+            if record.book_names:
+                book_names_list = [book_name.strip() for book_name in record.book_names.split(",")]
+                record.bulk_books_count = (record.env['product.template'].
+                                         search_count([("name", "in", book_names_list),('is_library_book','=',True)]))
 
     def bulk_books(self):
         """ This function is redirect the list view of created books in current session """
@@ -61,7 +62,7 @@ class LibraryBulkUploadBooks(models.TransientModel):
             "name": "Bulk Upload books",
             "type": "ir.actions.act_window",
             "res_model": "product.template",
-            "view_mode": "list",
+            "view_mode": "list,form",
             "domain": [('bulk_upload_book','=',True), ('name', 'in', book_names_list)],
-            "context": {"create": False},
+            "context": {'create': False},
         }

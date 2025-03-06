@@ -7,3 +7,4 @@ from . import library_book_category
 from . import library_bulk_upload_books
 from . import res_users
 from . import sale_order
+from . import res_partner

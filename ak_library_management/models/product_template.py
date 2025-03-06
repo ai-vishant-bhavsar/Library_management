@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime
 from odoo import models, fields, api
 
 
@@ -27,6 +26,7 @@ class ProductTemplate(models.Model):
         string="Status",
         default="available",
         required=True,
+        tracking=True
     )
 
     def action_mark_as_borrowed(self):
@@ -46,6 +46,5 @@ class ProductTemplate(models.Model):
         """ This method create a sequence for the new books """
         for vals in vals_list:
             if not vals.get('default_code'):
-                current_date = datetime.today().strftime('%Y-')
                 vals['default_code'] = self.env['ir.sequence'].next_by_code('product.template')
         return super().create(vals_list)

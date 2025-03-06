@@ -8,3 +8,4 @@ class ResUsers(models.Model):
     _description = 'Is user a manager'
 
     is_manager = fields.Boolean(string='Manager')
+

@@ -16,7 +16,7 @@ class SaleOrder(models.Model):
         """ This method is to count the low stock books
          and store boolean in approval_needed field"""
         for order in self:
-            low_stock_books = self.order_line.filtered(lambda l: l.product_uom_qty < 5)
+            low_stock_books = order.order_line.filtered(lambda l: l.product_uom_qty < 5)
             order.approval_needed = bool(low_stock_books)
 
     def action_confirm(self):
@@ -30,8 +30,15 @@ class SaleOrder(models.Model):
 
     @depends('approved_by_manager')
     def action_approve(self):
-        """ This method is for approve button to approve low stoke books order"""
+        """ This method is for approve button to approve low stock books order"""
         if not self.env.user.is_manager:
             raise exceptions.AccessError("Only managers can approve orders.")
         else:
             self.approved_by_manager = True
+
+    def action_cancel(self):
+        """ This method is for reject button to reject low stock books order """
+        if not self.env.user.is_manager:
+            raise exceptions.AccessError("Only manager can reject orders.")
+        else:
+            return super(SaleOrder, self).action_cancel()

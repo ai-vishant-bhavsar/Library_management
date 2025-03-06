@@ -6,6 +6,7 @@ class Library(models.Model):
     """ This store library details into the database """
     _name = 'library.library'
     _description = 'Library'
+    _inherit = ['mail.thread']
 
     name = fields.Char(string="Library Name", required=True)
     location = fields.Char(string="Location")
@@ -15,6 +16,10 @@ class Library(models.Model):
     borrowed_book_count = fields.Integer(
         string="Borrowed Books", compute="_compute_borrowed_book_count"
     )
+    librarian_id = fields.Many2one(comodel_name="res.users", string="Librarian")
+    _sql_constraints = [
+        ('name_unique', 'unique(name)', "This named library is already exist choose diffrant one")
+    ]
 
     @api.depends("book_ids.state")
     def _compute_borrowed_book_count(self):

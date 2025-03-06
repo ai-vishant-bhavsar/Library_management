@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime
 from odoo import _,models,fields, api
 
 
@@ -23,6 +22,12 @@ class LibraryMember(models.Model):
         """This method create a member sequence for library member"""
         for vals in vals_list:
             if not vals.get('membership_no'):
-                current_date = datetime.today().strftime('%Y-%m')
                 vals['membership_no'] = self.env['ir.sequence'].next_by_code('library.member')
         return super().create(vals_list)
+
+
+    def copy(self, default=None):
+        """ This method copy the data from the current data and change the sequence """
+        default = dict(default or {})
+        default['membership_no'] = self.env['ir.sequence'].next_by_code('library.member')
+        return super().copy(default)
