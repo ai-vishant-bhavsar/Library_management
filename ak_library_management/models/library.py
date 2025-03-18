@@ -1,0 +1,50 @@
+# -*- coding: utf-8 -*-
+from odoo.exceptions import ValidationError
+from odoo import models, fields, api
+from datetime import datetime
+
+
+class Library(models.Model):
+    """ This store library details into the database """
+    _name = 'library'
+    _description = 'Library'
+    _inherit = ['mail.thread']
+
+    name = fields.Char(string="Library Name", required=True)
+    location = fields.Char(string="Location")
+    capacity = fields.Integer(string="Capacity")
+    notes = fields.Text(string="Notes")
+    book_ids = fields.Many2many(comodel_name='product.template', string="Books")
+    borrowed_book_count = fields.Integer(
+        string="Borrowed Books", compute="_compute_borrowed_book_count"
+    )
+    date = fields.Date(string='Opening date', default=datetime.now())
+    librarian_id = fields.Many2one(comodel_name="res.users", string="Librarian")
+    _sql_constraints = [
+        ('name_unique', 'unique(name)', "This named library is already exist choose diffrant one")
+    ]
+
+    @api.constrains('book_ids', 'capacity')
+    def _check_capacity(self):
+        """ This is the validation that user can not add books more than library capacity """
+        for record in self:
+            count = len(record.book_ids)
+            if record.capacity < count:
+                raise ValidationError(f'You can not add more then {record.capacity} books')
+
+    @api.depends("book_ids.state")
+    def _compute_borrowed_book_count(self):
+        for record in self:
+            record.borrowed_book_count = len(record.book_ids.filtered(
+                lambda b: b.state == "borrowed"))
+
+    def action_view_borrowed_books(self):
+        """Open a list view showing all borrowed books from this library."""
+        return {
+            "name": "Borrowed Books",
+            "type": "ir.actions.act_window",
+            "res_model": "product.template",
+            "view_mode": "list",
+            "domain": [('id', 'in', self.book_ids.ids), ("state", "=", "borrowed")],
+            "context": {"create": False},
+        }
