@@ -15,3 +15,9 @@
 ## [18.0.2.2.0] 2025-03-21
 
 - add the new template action to create and download the qweb report of a library
+
+## [18.0.2.3.0] 2025-03-21
+
+- add new server action to notify that the book is returned
+- add new action to acknowledge the borrower that he/she borrow a book
+- add a new automated action that checks the borrower's history and stops borrowing new books
