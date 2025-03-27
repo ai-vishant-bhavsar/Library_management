@@ -1,0 +1,56 @@
+# -*- coding: utf-8 -*-
+# This is an information file of the module
+{
+    'name': 'Library Management',
+    'version': '18.0.3.0.0',
+    'category': 'Library',
+    'author': 'Vishant Bhavsar',
+    'website': 'http://aktivesoftware.com',
+    'license': 'LGPL-3',
+    'description': 'The Library management system',
+    'depends': [
+        'base',
+        'contacts',
+        'stock',
+        'sale_management',
+        'hr',
+        'website'
+    ],
+    'data': [
+        'security/ir.model.access.csv',
+        'data/ir_sequence.xml',
+        'data/ir_cron.xml',
+        'data/return_book_reminder_mail _template.xml',
+        'data/server_action.xml',
+        'data/return_book_notify_mail_template.xml',
+        'wizard/borrow_transaction_history_wizard_view.xml',
+        'wizard/borrow_transaction_warning_wizard_view.xml',
+        'report/library_template_action.xml',
+        'report/library_report_template.xml',
+        'views/res_config_settings_view.xml',
+        'views/contacts_web_menu.xml',
+        'views/sale_order_views.xml',
+        'views/display_contact_template_view.xml',
+        'views/display_contact_details_template_view.xml',
+        'views/library_views.xml',
+        'views/library_member_views.xml',
+        'views/library_book_category_views.xml',
+        'views/library_book_tags_views.xml',
+        'views/product_template_views.xml',
+        'views/update_quotations_menu_action_name.xml',
+        'views/library_bulk_upload_books_view.xml',
+        'views/borrow_transaction_history_view.xml',
+        'views/res_users_view.xml',
+        'views/res_partner_view.xml',
+        'views/stock_warehouse_view.xml',
+        'views/menu.xml',
+    ],
+
+    'assets': {
+        'web.report_assets_common': [
+            'static/src/css/invoice_style.css',
+        ],
+    },
+    'installable': True,
+    'application': True,
+}
