@@ -1,0 +1,22 @@
+<odoo>
+    <template id="customer_page" name="Customer Fetch Page">
+        <t t-call="website.layout">
+            <div class="container mt-5">
+                <h2>Fetch Customer Details</h2>
+                <div class="form-group">
+                    <label for="customer_email">Enter Email:</label>
+                    <input type="email" id="customer_email" class="form-control" placeholder="Enter customer email"/>
+                </div>
+                <button id="fetch_customer" class="btn btn-primary mt-2">Fetch Details</button>
+
+                <div id="customer_info" class="mt-3"/>
+            </div>
+        </t>
+    </template>
+
+    <template id="assets_backend" name="Find customer details" inherit_id="web.assets_frontend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/ak_library_management/static/src/js/customer_fetch.js"/>
+        </xpath>
+    </template>
+</odoo>
