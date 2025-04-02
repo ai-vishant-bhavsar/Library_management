@@ -39,3 +39,9 @@
 
 - inherit the POS product list template and customize it
 - update the manifest file to add a new dependency module
+
+## [18.0.5.0.0] 2025-04-02
+
+- add a new controller for the image download of the product in the website_sale
+- add new dependency in the manifest website_sale module
+- add a new button on the web template to download the images
