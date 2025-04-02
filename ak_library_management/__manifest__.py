@@ -2,7 +2,7 @@
 # This is an information file of the module
 {
     'name': 'Library Management',
-    'version': '18.0.4.0.0',
+    'version': '18.0.5.0.0',
     'category': 'Library',
     'author': 'Vishant Bhavsar',
     'website': 'http://aktivesoftware.com',
@@ -15,7 +15,8 @@
         'sale_management',
         'hr',
         'website',
-        'point_of_sale'
+        'point_of_sale',
+        'website_sale'
     ],
     'data': [
         'security/ir.model.access.csv',
@@ -29,10 +30,11 @@
         'report/library_template_action.xml',
         'report/library_report_template.xml',
         'views/res_config_settings_view.xml',
-        'views/contacts_web_menu.xml',
+        'views/web_menu.xml',
         'views/sale_order_views.xml',
         'views/display_contact_template_view.xml',
         'views/display_contact_details_template_view.xml',
+        'views/website_sale_product_page_inherit.xml',
         'views/library_views.xml',
         'views/library_member_views.xml',
         'views/library_book_category_views.xml',
