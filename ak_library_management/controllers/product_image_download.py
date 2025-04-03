@@ -25,9 +25,13 @@ class ProductImageDownload(http.Controller):
         else:
             zip_buffer = io.BytesIO()
             with zipfile.ZipFile(zip_buffer, 'w', zipfile.ZIP_DEFLATED) as zipf:
+                product_image_data = base64.b64decode(image)
+                zipf.writestr(f"{product.name}_{1}.png", product_image_data)
+                count = 1
                 for img in multi_image:
                     img_data = base64.b64decode(img.image_1920)
-                    zipf.writestr(f"{product.name}.png", img_data)
+                    count += 1
+                    zipf.writestr(f"{product.name}_{count}.png", img_data)
 
             zip_buffer.seek(0)
             return request.make_response(zip_buffer.read(), [
