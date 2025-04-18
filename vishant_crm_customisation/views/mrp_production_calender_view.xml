@@ -1,0 +1,13 @@
+<odoo>
+    <data>
+        <record id="view_production_calendar" model="ir.ui.view">
+            <field name="name">mrp.production.calendar</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.view_production_calendar"/>
+            <field eval="2" name="priority"/>
+            <field name="arch" type="xml">
+
+            </field>
+        </record>
+    </data>
+</odoo>
