@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="library_report_template">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <div class="oe_structure"/>
+                    <t t-foreach="docs" t-as="record">
+                        <h3 class="text-left">
+                            <span>
+                                <t t-out="record.name"/>
+                                <span>#</span>
+                                <t t-out="[record.id]"/>
+                            </span>
+                            <br/>
+                        </h3>
+                        <div class="row mb-4" id="information">
+                            <div class="col">
+                                <strong>Library Name</strong>
+                                <div t-field="record.name">Library Name</div>
+                            </div>
+                            <div class="col">
+                                <strong>Opening Date</strong>
+                                <div t-field="record.date">Opening Date</div>
+                            </div>
+                            <div class="col">
+                                <strong>Library Location</strong>
+                                <div t-field="record.location">Library Location</div>
+                            </div>
+                            <div class="col">
+                                <strong>Borrowed book count</strong>
+                                <div t-field="record.borrowed_book_count">Library borrowed book count</div>
+                            </div>
+                        </div>
+                    </t>
+                    <!-- Report Table -->
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Book Title</th>
+                                <th class="text-end">Price</th>
+                                <th class="text-end">Publish date</th>
+                                <th class="text-end">Author</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="docs" t-as="record">
+                                <t t-foreach="record.book_ids" t-as="book">
+                                    <tr>
+                                        <td>
+                                            <span>
+                                                <t t-out="book.name"/>
+                                            </span>
+                                            <br/>
+                                            <span>
+                                                <t t-out="book.qty_available"/>
+                                            </span>
+                                            <br/>
+                                        </td>
+                                        <td class="text-end">
+                                            <span>
+                                                <t t-out="book.list_price"/>
+                                            </span>
+                                            <br/>
+                                        </td>
+                                        <td class="text-end">
+                                            <span>
+                                                <t t-out="book.published_date"/>
+                                            </span>
+                                            <br/>
+                                        </td>
+                                        <td class="text-end">
+                                            <span>
+                                                <t t-out="book.author"/>
+                                            </span>
+                                            <br/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

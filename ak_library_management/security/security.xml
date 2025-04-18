@@ -1,0 +1,11 @@
+<odoo>
+    <record id="customer_details" model="ir.rule">
+        <field name="name">Customer details</field>
+        <field name="model_id" ref="res.partner"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+</odoo>
