@@ -35,12 +35,20 @@
                                 <t t-out="contact.company_name or 'No Company'"/>
                             </p>
                             <p>
-                                <strong>Address:</strong>
-                                <t t-out="contact.street or ''"/>
-                                <br/>
-                                <t t-out="contact.city or ''"/>
-                                <t t-out="contact.state_id.name or ''"/>
-                                <t t-out="contact.country_id.name or ''"/>
+                            	<strong>Address:</strong>
+                            	<t t-out="contact.street or ''"/>
+                            	<t t-if="contact.city">
+                            	    <t>,</t>
+                            	    <t t-out="contact.city"/>
+                            	</t>
+                            	<t t-if="contact.state_id.name">
+                            	    <t>,</t>
+                            	    <t t-out="contact.state_id.name"/>
+                            	</t>
+                            	<t t-if="contact.country_id.name">
+                            	    <t>,</t>
+                            	    <t t-out="contact.country_id.name"/>
+                            	</t>
                             </p>
                         </div>
                     </div>
