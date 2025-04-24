@@ -1,0 +1,18 @@
+<odoo>
+    <data noupdate="1">
+        <record id="library_return_confirmation_email_template" model="mail.template">
+            <field name="name">Book Return Confirmation</field>
+            <field name="model_id" ref="model_borrow_transaction_history"/>
+            <field name="subject">Your Book Return Has Been Recorded</field>
+            <field name="email_from">${(object.company_id.email or 'noreply@yourlibrary.com')}</field>
+            <field name="email_to">${(object.customer_id.email)}</field>
+            <field name="body_html"><![CDATA[
+                <p>Dear ${object.customer_id.name},</p>
+                <p>We have successfully recorded the return of your book <strong>${object.book_id.name}</strong>.</p>
+                <p>Thank you for returning it on time!</p>
+                <p>Best regards,</p>
+                <p>Your Library Team</p>
+            ]]></field>
+        </record>
+    </data>
+</odoo>

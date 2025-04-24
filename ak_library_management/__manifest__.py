@@ -1,0 +1,63 @@
+# -*- coding: utf-8 -*-
+# This is an information file of the module
+{
+    'name': 'Library Management',
+    'version': '18.0.5.0.0',
+    'category': 'Library',
+    'author': 'Vishant Bhavsar',
+    'website': 'http://aktivesoftware.com',
+    'license': 'LGPL-3',
+    'description': 'The Library management system',
+    'depends': [
+        'contacts',
+        'stock',
+        'sale_management',
+        'hr',
+        'website',
+        'point_of_sale',
+        'website_sale',
+        'purchase'
+    ],
+    'data': [
+        'security/security.xml',
+        'security/ir.model.access.csv',
+        'data/ir_sequence.xml',
+        'data/ir_cron.xml',
+        'data/return_book_reminder_mail _template.xml',
+        'data/server_action.xml',
+        'data/return_book_notify_mail_template.xml',
+        'data/membership_renewal_email_template.xml',
+        'data/overdue_book_email_template.xml',
+        'wizard/warning_wizard_view.xml',
+        'report/template_action.xml',
+        'report/library_report_template.xml',
+        'report/library_member_report_template.xml',
+        'views/res_config_settings_view.xml',
+        'views/web_menu.xml',
+        'views/sale_order_views.xml',
+        'views/display_contact_template_view.xml',
+        'views/display_contact_details_template_view.xml',
+        'views/website_sale_product_page_inherit.xml',
+        'views/library_views.xml',
+        'views/library_member_views.xml',
+        'views/library_book_category_views.xml',
+        'views/library_book_tags_views.xml',
+        'views/product_template_views.xml',
+        'views/update_quotations_menu_action_name.xml',
+        'views/library_bulk_upload_books_view.xml',
+        'views/borrow_transaction_history_view.xml',
+        'views/res_users_view.xml',
+        'views/res_partner_view.xml',
+        'views/stock_warehouse_view.xml',
+        'views/menu.xml',
+    ],
+    "assets": {
+        "point_of_sale._assets_pos": [
+            "ak_library_management/static/src/customer_display/inherite_customer_display.xml",
+        ],
+
+    },
+
+    'installable': True,
+    'application': True,
+}

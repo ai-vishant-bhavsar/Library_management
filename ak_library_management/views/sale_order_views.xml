@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- This view is inherited to add 2 buttons and change the condition of 1 button -->
+        <record id="view_order_form" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <!-- This is the changed condition of the existing button-->
+                <xpath expr="//button[@name='action_confirm'][2]" position="attributes">
+                    <attribute name="invisible">hide_button or state in ('sent','sale','cancel')</attribute>
+                </xpath>
+                <!--In this, I have added 2 new buttons named Approve and Reject-->
+                <xpath expr="//button[@name='action_draft']" position="after">
+                    <button name="action_approve"
+                            string="Approve"
+                            type="object"
+                            invisible="not hide_button or state in ('sent','sale','cancel')"/>
+                    <button name="action_cancel"
+                            string="Reject"
+                            type="object"
+                            invisible="not hide_button or state in ('sent','sale','cancel')"/>
+                </xpath>
+                <!-- In this I have added domain to show only book products -->
+                <xpath expr="//field[@name='product_template_id']" position="attributes">
+                    <attribute name="domain">[('sale_ok', '=', True)]</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

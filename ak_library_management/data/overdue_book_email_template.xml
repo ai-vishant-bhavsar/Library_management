@@ -1,0 +1,27 @@
+<odoo>
+    <data>
+        <!--mail template for book overdue-->
+        <record id="overdue_book_email_template" model="mail.template">
+            <field name="name">Library: Book overdue</field>
+            <field name="model_id" ref="ak_library_management.model_borrow_transaction_history"/>
+            <field name="subject">Overdue Book</field>
+            <field name="email_from">{{ user.email_formatted }}</field>
+            <field name="partner_to">{{ object.customer_id.id }}</field>
+             <field name="body_html" type="html">
+                <div style="margin: 1.5px; padding: 1.5px;">
+                    <p style="margin: 1.5px; padding: 1.5px; font-size: 12px;">
+                        Dear,
+                        <t t-out="object.customer_id.name"/>
+                        <br/>
+                        Your overdue book is
+                        <p style="font-weight: bold">Title:<t t-out="[book.name for book in object.books]"/>
+                        </p>
+                        <t/> Please returned the above books as soon as possible.
+                        <br/>
+                        Thank You.
+                    </p>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>
