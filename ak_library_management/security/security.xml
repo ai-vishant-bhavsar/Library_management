@@ -1,5 +1,4 @@
 <odoo>
-
     <!--custom category-->
     <record id="library_category" model="ir.module.category">
         <field name="name">Library</field>
@@ -29,40 +28,46 @@
         <field name="category_id" ref="ak_library_management.library_sub_category"/>
     </record>
 
-    <!--record rule for restrict unlink borrowed books-->
-    <record id="restrict_unlink_borrowed_books" model="ir.rule">
-        <field name="name">prevent assistant and worker to delete borrowed product</field>
+    <!-- Prevent Library Assistants and Workers from deleting borrowed books -->
+    <record id="rule_no_delete_borrowed_books" model="ir.rule">
+        <field name="name">No Delete Borrowed Books</field>
         <field name="model_id" ref="model_product_template"/>
-        <field name="perm_read" eval="0"/>
-        <field name="perm_write" eval="0"/>
+        <field name="global" eval="False"/>
+        <field name="domain_force">[('state', '!=', 'borrowed')]</field>
+        <field name="perm_unlink" eval="0"/>
+        <field name="groups" eval="[(4, ref('group_library_assistant')), (4, ref('group_library_worker'))]"/>
+    </record>
+
+    <!-- Workers can only view active transactions -->
+    <record id="rule_worker_view_active_transactions" model="ir.rule">
+        <field name="name">Worker View Active Transactions</field>
+        <field name="model_id" ref="model_borrow_transaction_history"/>
+        <field name="domain_force">[('is_active', '=', True)]</field>
+        <field name="perm_read" eval="1"/>
         <field name="perm_create" eval="0"/>
-        <field name="perm_unlink" eval="1"/>
-        <field name="domain_force">[('state','!=','borrowed')]</field>
-        <field name="groups"
-               eval="[Command.link(ref('ak_library_management.group_library_assistant')), Command.link(ref('ak_library_management.group_library_worker'))]"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+        <field name="groups" eval="[(4, ref('group_library_worker'))]"/>
     </record>
 
-    <!--record rule for worker active transaction-->
-    <record id="worker_active_transaction" model="ir.rule">
-        <field name="name">Workers can only view active transactions</field>
+    <!-- Assistants cannot delete transactions -->
+    <record id="rule_assistant_no_delete_transactions" model="ir.rule">
+        <field name="name">Assistant No Delete Transactions</field>
         <field name="model_id" ref="model_borrow_transaction_history"/>
-        <field name="perm_read">1</field>
-        <field name="perm_write">0</field>
-        <field name="perm_create">0</field>
-        <field name="perm_unlink">0</field>
-        <field name="domain_force">[('is_active','=',True)]</field>
-        <field name="groups" eval="[(4,ref('ak_library_management.group_library_worker'))]"/>
+        <field name="domain_force">[]</field>
+        <field name="perm_unlink" eval="0"/>
+        <field name="groups" eval="[(4, ref('group_library_assistant'))]"/>
     </record>
 
-    <!--record rule for check borrow limit-->
-    <record id="check_borrow_limit" model="ir.rule">
-        <field name="name">Workers can borrowed limited book</field>
-        <field name="model_id" ref="model_borrow_transaction_history"/>
-        <field name="perm_read">0</field>
-        <field name="perm_write">0</field>
-        <field name="perm_create">1</field>
-        <field name="perm_unlink">0</field>
-        <field name="domain_force">[('is_out_of_limit','=',False)]</field>
-        <field name="groups" eval="[(4,ref('ak_library_management.group_library_worker'))]"/>
+    <!-- Assistants cannot view financial details of members -->
+    <record id="rule_assistant_no_financial_details" model="ir.rule">
+        <field name="name">Assistant No Financial Details</field>
+        <field name="model_id" ref="model_res_partner"/>
+        <field name="domain_force">[('customer_rank', '!=', 1)]</field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+        <field name="groups" eval="[(4, ref('group_library_assistant'))]"/>
     </record>
 </odoo>
