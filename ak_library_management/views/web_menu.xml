@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+        <record id="contacts_menu" model="website.menu">
+            <field name="name">Contacts</field>
+            <field name="url">/contacts</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">30</field>
+        </record>
+        <record id="contacts_menu" model="website.menu">
+            <field name="name">Fetch Contact_details</field>
+            <field name="url">/customer/details</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">40</field>
+        </record>
+    </data>
+</odoo>

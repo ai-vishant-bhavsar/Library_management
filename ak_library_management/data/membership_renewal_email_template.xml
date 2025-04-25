@@ -1,0 +1,30 @@
+<odoo>
+    <data>
+        <!--mail template for renew membership-->
+        <record id="membership_renewal_email_template" model="mail.template">
+            <field name="name">Library: Renewal Membership</field>
+            <field name="model_id" ref="ak_library_management.model_library_member"/>
+            <field name="subject">Renewal Membership</field>
+            <field name="email_from">{{ user.company_id.email_formatted }}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 1.5px; padding: 1.5px;">
+                    <p style="margin: 1.5px; padding: 1.5px; font-size: 12px;">
+                        Dear,
+                        <t t-out="object.name"/>
+                        <br/>
+                        <p style="font-weight:bold">Member Details:</p>
+                        <b>Name:</b> <t t-out="object.name"/> <br/>
+                        <b>Email:</b> <t t-out="object.email or ''"/><br/>
+                        <b>Phone No:</b> <t t-out="object.phone or ''"/><br/>
+                        <b>Membership Start Date:</b> <t t-out="object.membership_date or ''"/>
+                        <br/>
+                        Please renew your membership.
+                        <br/>
+                        Thank You
+                    </p>
+                </div>
+            </field>
+            <field name="report_template_ids" eval="[(4, ref('ak_library_management.action_report_library_member'))]"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--Header Footer adjustment-->
+    <template id="custom_external_layout_standard" inherit_id="web.external_layout_standard">
+        <xpath expr="//div[@name='company_address']" position="attributes">
+            <attribute name="t-if">not o</attribute>
+        </xpath>
+        <xpath expr="//div[@name='company_address']" position="after">
+            <div class="row" t-if="o and o._name == 'account.move'">
+                <div class="col-6">
+                    <table class="table-borderless" style="width:350px; margin-bottom:80px">
+                        <tr>
+                            <td>
+                                <span>Invoice Reference:</span>
+                            </td>
+                            <td>
+                                <span t-field="o.name"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>Invoice Date:</span>
+                            </td>
+                            <td>
+                                <span t-field="o.invoice_date"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>Reference Period:</span>
+                            </td>
+                            <td>
+                                <span>
+                                    <span t-field="o.invoice_date"/>
+                                    <span>to</span>
+                                    <span t-field="o.invoice_date_due"/>
+                                </span>
+                            </td>
+                        </tr>
+                        <t t-if="o.invoice_payment_term_id">
+                            <tr>
+                                <td>
+                                    <span>Payment Term:</span>
+                                </td>
+                                <td>
+                                    <span t-field="o.invoice_payment_term_id"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </table>
+                </div>
+                <div class="col-4"/>
+                <div class="col-2 text-left">
+                    <strong>
+                        <ul class="list-unstyled">
+                            <li>
+                                <span class="mb-0" t-field="o.partner_id"
+                                      t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>
+                            </li>
+                        </ul>
+                    </strong>
+                </div>
+            </div>
+        </xpath>
+        <xpath expr="//div[@class='o_footer_content d-flex border-top pt-2']" position="attributes">
+            <attribute name="t-if">not o</attribute>
+        </xpath>
+        <xpath expr="//div[contains(@class, 'o_footer_content')]" position="after">
+            <div class="text-center" style="color:#000080;">
+                <p>
+                    <t t-out="o.partner_id.company_name or ''"/>
+                    <t t-out="o.partner_id.name or ''"/>
+                    <t t-out="o.partner_id.street or ''"/>
+                    <t t-if="o.partner_id.city or ''">
+                        <t>,</t>
+                        <t t-out="o.partner_id.city or ''"/>
+                    </t>
+                    <t t-if="o.partner_id.state_id.name or ''">
+                        <t>,</t>
+                        <t t-out="o.partner_id.state_id.name or ''"/>
+                    </t>
+                    <t t-if="o.partner_id.country_id.name or ''">
+                        <t>,</t>
+                        <t t-out="o.partner_id.country_id.name or ''"/>
+                    </t>
+                </p>
+            </div>
+        </xpath>
+        <xpath expr="//h2[@t-out='layout_document_title']/parent::div" position="attributes">
+            <attribute name="t-attf-class">article o_report_layout_standard o_company_#{company.id}_layout o_snail_mail
+                {{'o_report_layout_background' if company.layout_background != 'Blank' else ''}}
+            </attribute>
+        </xpath>
+    </template>
+
+    <template id="custom_invoice_report_inherit" inherit_id="account.report_invoice_document">
+        <xpath expr="//div[@class='row']" position="attributes">
+            <attribute name="t-if">not o</attribute>
+        </xpath>
+        <xpath expr="//div[@class='clearfix invoice_main']/div[@class='page mb-4']/t[1]" position="attributes">
+            <attribute name="t-if">not o</attribute>
+        </xpath>
+        <xpath expr="//div[@class='clearfix invoice_main']/div[@class='page mb-4']/t[1]" position="after">
+            <div style="padding-top: 40px;">
+                <strong>
+                    <p>Invoice</p>
+                </strong>
+            </div>
+        </xpath>
+        <xpath expr="//div" position="after">
+            <style>
+                th {
+                font-weight: bold;
+                }
+            </style>
+        </xpath>
+        <xpath expr="//div[@id='informations']" position="attributes">
+            <attribute name="t-if">not o</attribute>
+        </xpath>
+        <xpath expr="//table[@name='invoice_line_table']" position="before">
+            <div style="margin-top: 75px;"/>
+        </xpath>
+        <xpath expr="//span[@id='payment_terms_note_id']" position="attributes">
+            <attribute name="t-if">not o</attribute>
+        </xpath>
+        <xpath expr="//th[@name='th_taxes']" position="attributes">
+            <attribute name="t-if">not o</attribute>
+        </xpath>
+        <xpath expr="//td[@name='td_taxes']" position="attributes">
+            <attribute name="t-if">not o</attribute>
+        </xpath>
+        <xpath expr="//td[@name='td_price_unit']" position="attributes">
+            <attribute name="t-if">not o</attribute>
+        </xpath>
+        <xpath expr="//td[@name='td_price_unit']" position="after">
+            <td name="td_price_unit"
+                t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}"
+                t-options='{"widget": "monetary","display_currency": o.currency_id}'>
+                <span class="text-nowrap" t-field="line.price_unit">9.00</span>
+            </td>
+        </xpath>
+        <xpath expr="//div[@id='right-elements']" position="attributes">
+            <attribute name="t-attf-class">#{'col-12' if report_type != 'html' else 'col-12'} d-inline-block
+                float-start
+            </attribute>
+            <attribute name="style">margin-bottom:75px; margin-top:75px;</attribute>
+        </xpath>
+        <xpath expr="//t[@t-call='account.document_tax_totals_company_currency_template']" position="attributes">
+            <attribute name="t-if">not o</attribute>
+        </xpath>
+    </template>
+
+    <template id="document_tax_totals_template_inherit" inherit_id="account.document_tax_totals_template">
+        <xpath expr="//tr[@class='o_subtotal']" position="attributes">
+            <attribute name="style">font-weight:bold; margin-top:5px;</attribute>
+        </xpath>
+        <xpath expr="//tr[@class='o_taxes']" position="attributes">
+            <attribute name="style">font-weight:bold;</attribute>
+        </xpath>
+    </template>
+</odoo>
